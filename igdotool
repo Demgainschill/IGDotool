@@ -4,10 +4,10 @@
 ## Browser must be a 1920x1080p resolution screen 
 ## Screen zoom must be defaulted to 67%
 ## User must be signed in already
-## User must already be on the saved page and have the screen zoom at 67%
+## User must already be on the all-saved page and have the screen zoom at 67%
 
 declare -i maxnoposts
-#default filename iglinks 
+#default filename defaults to "iglinks" can be changed 
 filename="iglinks"
 declare -i tasks
 
@@ -46,14 +46,16 @@ xdotool keydown Alt key Tab keyup Alt
 xclip -selection clipboard -o >> iglinks && echo >> iglinks
 sleep 0.5
 xdotool keydown Alt key Tab keyup Alt
-done"
+done
+xdotool keydown Alt key Tab keyup Alt"
+echo "completed copying all links"
 }
 
 usage(){
 	echo << EOF
-	-n [int] : Number of posts to copy links from to ( default : iglinks file ) 
+	-n [ no. of posts [int] ] : Number of posts to copy links from to ( default : iglinks file ) 
 	-h 	 : Displaying usage section of igdotool
-	-x [ parallel tasks] : Extracting posts from iglinks file using xargs and wget ( higher parallel tasks faster downloads ))
+	-x [ parallel tasks for xargs [int] ] : Extracting posts from iglinks file using xargs and wget ( higher parallel tasks faster downloads ))
 EOF
 }
 
