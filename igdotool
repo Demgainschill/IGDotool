@@ -6,9 +6,15 @@
 ## User must be signed in already
 ## User must already be on the saved page and have the screen zoom at 67%
 
+declare -i maxnoposts
+#default filename iglinks 
+filename="iglinks"
+declare -i tasks
 
-igxcliping(){
-	
+
+igxclipping(){	
+
+maxnoposts="${1}"
 xdotool keydown Alt key Tab keyup Alt
 xdotool mousemove 855 335
 sleep 0.5
@@ -24,7 +30,7 @@ xclip -selection clipboard -o >> iglinks && echo >> iglinks
 sleep 0.5
 xdotool keydown Alt key Tab keyup Alt
 ## start with a loop 
-for i in {1..$maxnoposts}; do
+eval "for i in {1..$maxnoposts}; do
 xdotool mousemove 1896 606
 xdotool click 1
 xdotool mousemove 855 335
@@ -40,21 +46,16 @@ xdotool keydown Alt key Tab keyup Alt
 xclip -selection clipboard -o >> iglinks && echo >> iglinks
 sleep 0.5
 xdotool keydown Alt key Tab keyup Alt
-done
+done"
 }
 
 usage(){
 	echo << EOF
 	-n [int] : Number of posts to copy links from to ( default : iglinks file ) 
 	-h 	 : Displaying usage section of igdotool
-	-x [int] : Extracting posts from iglinks file using xargs and wget
+	-x [ parallel tasks] : Extracting posts from iglinks file using xargs and wget ( higher parallel tasks faster downloads ))
 EOF
 }
-
-declare -i noofposts
-#default filename iglinks 
-filename="iglinks"
-declare -i tasks
 
 extractor(){
 	filename="$1"
@@ -110,7 +111,7 @@ while getopts ":hn:x:" OPTS; do
 			maxnoposts="${OPTARG}"
 			if echo $maxnoposts | grep -Ei '^[0-9]+$'; then 
 				echo "$maxnoposts is an integer"
-				
+				igxclipping "$maxnoposts"
 			else
 				echo "$maxnoposts is not an integer exiting..."
 				exit 1
