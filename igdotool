@@ -1,0 +1,87 @@
+#!/bin/bash
+
+## igdotool will extract links from saved posts some requirements are as follows 
+## Browser must be a 1920x1080p resolution screen 
+## Screen zoom must be defaulted to 67%
+## User must be signed in already
+## User must already be on the saved page and have the screen zoom at 67%
+
+xdotool keydown Alt key Tab keyup Alt
+xdotool mousemove 855 335
+sleep 0.5
+xdotool click 1
+xdotool mousemove 1358 185
+sleep 0.5
+xdotool click 1
+xdotool mousemove 957 610
+sleep 0.5
+xdotool click 1
+xdotool keydown Alt key Tab keyup Alt
+xclip -selection clipboard -o >> iglinks && echo >> iglinks
+sleep 0.5
+xdotool keydown Alt key Tab keyup Alt
+## start with a loop 
+for i in {1..5}; do
+xdotool mousemove 1896 606
+xdotool click 1
+xdotool mousemove 855 335
+sleep 0.5
+xdotool click 1
+xdotool mousemove 1358 185
+sleep 0.5
+xdotool click 1
+xdotool mousemove 957 610
+sleep 0.5
+xdotool click 1
+xdotool keydown Alt key Tab keyup Alt
+xclip -selection clipboard -o >> iglinks && echo >> iglinks
+sleep 0.5
+xdotool keydown Alt key Tab keyup Alt
+done
+
+usage(){
+	echo << EOF
+	-n : Number of posts to copy links from to iglinks file
+	-h : Displaying usage section of igdotool
+	-x : Extracting posts from iglinks file using xargs and wget
+EOF
+}
+
+declare -i noofposts
+while getopts ":hn:" OPTS; do
+	case "$OPTS" in
+		n)
+			maxnoposts="${OPTARG}"
+			
+			;;
+		h)
+			usage
+			;;
+			
+		x)
+			extracter
+			;;
+		\?)
+			echo "Invalid option"
+			exit 1
+			;;
+		:)
+			echo "Requires argument"
+			exit 1
+			;;
+	esac
+done
+
+if [[ ! -n $1 ]]; then
+	usage
+	exit 1
+fi
+
+shift $((OPTIND-1))
+
+if [[ $# -ge 1 ]]; then 
+	echo "Too many arguments. Exiting..."
+	usage
+	exit 1
+fi 
+
