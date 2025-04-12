@@ -6,6 +6,9 @@
 ## User must be signed in already
 ## User must already be on the saved page and have the screen zoom at 67%
 
+
+igxcliping(){
+	
 xdotool keydown Alt key Tab keyup Alt
 xdotool mousemove 855 335
 sleep 0.5
@@ -21,7 +24,7 @@ xclip -selection clipboard -o >> iglinks && echo >> iglinks
 sleep 0.5
 xdotool keydown Alt key Tab keyup Alt
 ## start with a loop 
-for i in {1..5}; do
+for i in {1..$maxnoposts}; do
 xdotool mousemove 1896 606
 xdotool click 1
 xdotool mousemove 855 335
@@ -38,20 +41,80 @@ xclip -selection clipboard -o >> iglinks && echo >> iglinks
 sleep 0.5
 xdotool keydown Alt key Tab keyup Alt
 done
+}
 
 usage(){
 	echo << EOF
-	-n : Number of posts to copy links from to iglinks file
-	-h : Displaying usage section of igdotool
-	-x : Extracting posts from iglinks file using xargs and wget
+	-n [int] : Number of posts to copy links from to ( default : iglinks file ) 
+	-h 	 : Displaying usage section of igdotool
+	-x [int] : Extracting posts from iglinks file using xargs and wget
 EOF
 }
 
 declare -i noofposts
-while getopts ":hn:" OPTS; do
+#default filename iglinks 
+filename="iglinks"
+declare -i tasks
+
+extractor(){
+	filename="$1"
+	tasks="$2"
+	if [[ -n $(which yt-dlp) ]]; then 
+		echo "wget installed" 
+	else
+		apt-get install yt-dlp
+		if [[ $? -eq 0 ]];
+		then 
+			echo "wget installed successfully"
+		else
+			echo "errors encountered exiting"
+			exit 1
+		fi
+	fi
+	
+	if [[ -n $(which xargs) ]];then
+		echo 'echo xargs exists'
+	else
+		echo "installing xargs"
+		apt-get install xargs 
+		if [[ $? -eq 0 ]];then
+			'xargs installed successfully'
+		else
+			echo "encountered problems downloading xargs"
+			exit 1
+		fi
+	fi
+	
+       	if [[ -f $filename ]] && [[ -n $filename ]]; then 
+		echo $filename exists and contains links
+		echo "extracting and downloading links using parallely"
+		cat $filename | xargs -n 1 -I {} -P $tasks yt-dlp {}
+		if [[ $? -eq 0 ]]; then
+			echo "all ig posts have been extracted"
+		else
+			echo "Errors encountered while extracting..."
+			echo "Exiting..." 
+			exit 1
+		fi
+	else
+		echo "file does not exist"
+		echo "Please run igdotool with -n [int]	and also modify default filename param"
+		echo "Exiting.... see -h for usage"
+		exit 1
+	fi
+		
+}	
+while getopts ":hn:x:" OPTS; do
 	case "$OPTS" in
 		n)
 			maxnoposts="${OPTARG}"
+			if echo $maxnoposts | grep -Ei '^[0-9]+$'; then 
+				echo "$maxnoposts is an integer"
+				
+			else
+				echo "$maxnoposts is not an integer exiting..."
+				exit 1
+			fi	
 			
 			;;
 		h)
@@ -59,7 +122,22 @@ while getopts ":hn:" OPTS; do
 			;;
 			
 		x)
-			extracter
+			if [[ -f "$filename" ]] && [[ -n "$filename" ]]; then
+				tasks=${OPTARG}
+				echo "file exists"
+				echo "Proceeding with extracting of links from $filename"
+					
+				if [[ -n $tasks ]]; then
+					extractor "$filename" "$tasks"
+				else
+					echo "$tasks is not a valid integer"
+				fi
+			else
+				echo "File not found run the tool with -n [int] option first"
+				exit 1
+				fi
+
+			
 			;;
 		\?)
 			echo "Invalid option"

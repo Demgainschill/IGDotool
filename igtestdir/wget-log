@@ -1,0 +1,16 @@
+--2025-04-12 14:33:36--  https://www.instagram.com/reel/DHOQUaZJopx/?utm_source=ig_web_copy_link
+Resolving www.instagram.com (www.instagram.com)... 157.240.192.174, 2a03:2880:f237:1e0:face:b00c:0:4420
+Connecting to www.instagram.com (www.instagram.com)|157.240.192.174|:443... connected.
+HTTP request sent, awaiting response... 302 Found
+Location: https://www.facebook.com/unsupportedbrowser [following]
+--2025-04-12 14:33:37--  https://www.facebook.com/unsupportedbrowser
+Resolving www.facebook.com (www.facebook.com)... 157.240.192.35, 2a03:2880:f137:182:face:b00c:0:25de
+Connecting to www.facebook.com (www.facebook.com)|157.240.192.35|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [text/html]
+Saving to: ‘index.html?utm_source=ig_web_copy_link’
+
+               index.html?utm     [<=>                                              ]       0  --.-KB/s               index.html?utm_source=ig_web_     [ <=>                                             ]  45.34K  --.-KB/s    in 0.02s   
+
+2025-04-12 14:33:37 (1.79 MB/s) - ‘index.html?utm_source=ig_web_copy_link’ saved [46428]
+
