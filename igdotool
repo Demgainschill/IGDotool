@@ -67,6 +67,12 @@ maxnoposts="${1}"
 
 usage(){
 	cat << EOF
+${c}▗▄▄▄▖ ▗▄▄▖▗▄▄▄  ▗▄▖▗▄▄▄▖▗▄▖  ▗▄▖ ▗▖   ${reset}
+${c}  █  ▐▌   ▐▌  █▐▌ ▐▌ █ ▐▌ ▐▌▐▌ ▐▌▐▌   ${reset}
+${c}  █  ▐▌▝▜▌▐▌  █▐▌ ▐▌ █ ▐▌ ▐▌▐▌ ▐▌▐▌   ${reset}
+${c}▗▄█▄▖▝▚▄▞▘▐▙▄▄▀▝▚▄▞▘ █ ▝▚▄▞▘▝▚▄▞▘▐▙▄▄▖${reset}
+${c}                                      ${reset}
+	
 	${r}IMPORTANT!!${reset}: ${y}Read and setup according to the readme.md file first and have it work flawlessly.${reset}
 
 		${b}Usage${reset}: ./${g}igdotool${reset} [${y}-n|x${reset}] [${b}int${reset}]
