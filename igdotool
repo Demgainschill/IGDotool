@@ -15,47 +15,54 @@ declare -i tasks
 igxclipping(){	
 
 maxnoposts="${1}"
-xdotool keydown Alt key Tab keyup Alt
-xdotool mousemove 855 335
-sleep 0.5
-xdotool click 1
-xdotool mousemove 1358 185
-sleep 0.5
-xdotool click 1
-xdotool mousemove 957 610
-sleep 0.5
-xdotool click 1
-xdotool keydown Alt key Tab keyup Alt
-xclip -selection clipboard -o >> iglinks && echo >> iglinks
-sleep 0.5
-xdotool keydown Alt key Tab keyup Alt
+	xdotool keydown Alt key Tab keyup Alt
+	xdotool mousemove 855 335
+	sleep 0.5
+	xdotool click 1
+	sleep 0.5
+	xdotool mousemove 1358 185
+	sleep 0.5
+	xdotool click 1
+	sleep 0.5
+	xdotool mousemove 957 610
+	sleep 0.5
+	xdotool click 1
+	sleep 0.5
+	xdotool keydown Alt key Tab keyup Alt
+	xclip -selection clipboard -o >> iglinks && echo >> iglinks
+	sleep 0.5
+	xdotool keydown Alt key Tab keyup Alt
 ## start with a loop 
-eval "for i in {1..$maxnoposts}; do
-xdotool mousemove 1896 606
-xdotool click 1
-xdotool mousemove 855 335
-sleep 0.5
-xdotool click 1
-xdotool mousemove 1358 185
-sleep 0.5
-xdotool click 1
-xdotool mousemove 957 610
-sleep 0.5
-xdotool click 1
-xdotool keydown Alt key Tab keyup Alt
-xclip -selection clipboard -o >> iglinks && echo >> iglinks
-sleep 0.5
-xdotool keydown Alt key Tab keyup Alt
-done
-xdotool keydown Alt key Tab keyup Alt"
-echo "completed copying all links"
+	eval "for i in {1..$maxnoposts}; do
+		xdotool mousemove 1896 606
+		xdotool click 1
+		sleep 0.5 
+		xdotool mousemove 855 335
+		sleep 0.5
+		xdotool click 1
+		sleep 0.5
+		xdotool mousemove 1358 185
+		sleep 0.5
+		xdotool click 1
+		sleep 0.5
+		xdotool mousemove 957 610
+		sleep 0.5
+		xdotool click 1
+		sleep 0.5
+		xdotool keydown Alt key Tab keyup Alt
+		xclip -selection clipboard -o >> iglinks && echo >> iglinks
+		sleep 0.5
+		xdotool keydown Alt key Tab keyup Alt
+	done
+		xdotool keydown Alt key Tab keyup Alt"
+		echo "completed copying all links"
 }
 
 usage(){
-	echo << EOF
-	-n [ no. of posts [int] ] : Number of posts to copy links from to ( default : iglinks file ) 
-	-h 	 : Displaying usage section of igdotool
-	-x [ parallel tasks for xargs [int] ] : Extracting posts from iglinks file using xargs and wget ( higher parallel tasks faster downloads ))
+	cat << EOF
+	-n [int (no. of posts) ] : Number of posts to copy links from to ( default : iglinks file ) 
+	-h 	 		 : Displaying usage section of igdotool
+	-x [int (no. of posts) ] : Extracting posts from iglinks file using xargs and wget ( higher parallel tasks faster downloads ))
 EOF
 }
 
@@ -70,7 +77,8 @@ extractor(){
 		then 
 			echo "wget installed successfully"
 		else
-			echo "errors encountered exiting"
+			echo "errors encountered while installing yt-dlp"
+			echo "Manually install yt-dlp and rerun command"
 			exit 1
 		fi
 	fi
@@ -84,6 +92,7 @@ extractor(){
 			'xargs installed successfully'
 		else
 			echo "encountered problems downloading xargs"
+			echo "xargs not use can download findutils package manually"
 			exit 1
 		fi
 	fi
@@ -144,6 +153,7 @@ while getopts ":hn:x:" OPTS; do
 			;;
 		\?)
 			echo "Invalid option"
+			usage
 			exit 1
 			;;
 		:)
