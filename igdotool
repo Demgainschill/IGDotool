@@ -75,16 +75,16 @@ ${c}                                      ${reset}
 	
 	${r}IMPORTANT!!${reset}: ${y}Read and setup according to the readme.md file first and have it work flawlessly.${reset}
 
-		${b}Usage${reset}: ./${g}igdotool${reset} [${y}-n|x${reset}] [${b}int${reset}]
+		${b}Usage${reset}: ./${g}igdotool${reset} [${y}-n${reset}|${y}-x${reset}|${y}-h${reset}] [${b}int${reset}]
 
 	${y}-n${reset} [${b}int${reset}] : ${c}Number of posts to copy links from ${reset}( ${y} Value of int being the number of posts to automate copying to clipboard ${reset} )
 	${y}-x${reset} [${b}int${reset}] : ${c}Extracting posts from iglinks file using xargs and yt-dlp${reset} ( ${y}int being higher parallel tasks faster downloads max 64 parallel tasks downloading ${reset} )
-	${y}-h${reset} 	 :${c}Displaying usage section of igdotool${reset}
+	${y}-h${reset} 	 :${c} Displaying usage section of igdotool${reset}
 
 A quick example supposing your alt+tab window is an active browser page of all ig saved posts with 67% zoom
 
-	${r}Run${reset} ./${g}igdotool${reset} ${y}-n${reset} ${b}5${reset} (${y}will automate copying of the 5 posts in a row to a file in the CWD ${reset})
-${b}then${reset}, 	${r}Run${reset} ./${g}igdotool${reset} ${y}-x${reset} ${b}8${reset} ( ${y}will then start downloading all links found from the file containing links with parallel tasks allowing for faster downloads and the actual use of multithreaded systems downloaded within the same CWD ${reset})
+	${r}Run${reset} ./${g}igdotool${reset} ${y}-n${reset} ${b}5${reset} ( ${y}will automate copying of the 5 posts in a row to a file in the CWD ${reset})
+${b}then${reset}, 	${r}Run${reset} ./${g}igdotool${reset} ${y}-x${reset} ${b}8${reset} ( ${y}will then start downloading all links found from the file containing links with parallel tasks allowing for faster parallel downloads and the actual use of multithreaded systems downloaded within the same CWD ${reset})
 
 ${g}For the Community. Enjoy!!!${reset}
 ${b}~~ @Demgainschill ~~${reset}
