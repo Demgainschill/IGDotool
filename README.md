@@ -1,6 +1,6 @@
 ## For the community. Always for the Community.
 # IGDotool #
-The perfect tool created for extracting posts from instagram using automation using tools such as (xargs for parallel downloading capabilites ,yt-dlp for downloading posts,xclip for clipboard copy/pasting ,xdotool for automating mouse-click actions, )
+The perfect tool created for extracting saved posts from instagram using automation using tools such as (xargs for parallel downloading capabilites ,yt-dlp for downloading posts,xclip for clipboard copy/pasting ,xdotool for automating mouse-click actions, )
 
 ![image](https://github.com/user-attachments/assets/e914a006-df30-4a36-b57d-4aca54fc1886)
 
