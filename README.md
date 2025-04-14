@@ -21,7 +21,7 @@ https://github.com/user-attachments/assets/6b14c4d0-7a30-48bb-950a-d522e128c69a
 https://github.com/user-attachments/assets/37316862-8257-413c-991f-1bd5be94fe5c
 
 ## Known Problems
-1. In this release problems related to saving "photo posts" will cause problems as a whole (Only video posts as of now...)
+1. In this release problems related to saving "photo posts" will cause problems as a whole (Can only download video posts as of now...)
 
 ## For the community. Always for the community.
 
