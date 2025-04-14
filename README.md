@@ -12,12 +12,12 @@ The perfect tool created for extracting saved posts from instagram using automat
 ## Assuming the user has all the requirements met before this.
 ## Running the tool (A 2 step procedure)
 1. Running the command ./igdotool -n [int] ( int being the number of posts to extract from )
-
+## PART 1
 https://github.com/user-attachments/assets/6b14c4d0-7a30-48bb-950a-d522e128c69a
 
 3. A defaulting filename "iglinks" will be populated with links ( can be modified within the script as seen in the above vid) 
 4. Then running the command ./igdotool -x [int] ( int being the number of threads/tasks for yt-dlp to download posts parallely in the CWD. ( usually a number between 6-64 based on number of cores { can run "noproc" to view existing cores and adjusting threads } )
-
+## Part 2
 https://github.com/user-attachments/assets/37316862-8257-413c-991f-1bd5be94fe5c
 
 ## Known Problems
