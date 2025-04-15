@@ -25,6 +25,6 @@ https://github.com/user-attachments/assets/37316862-8257-413c-991f-1bd5be94fe5c
 ## For the community. Always for the community.
 
 
-Do I deserve a coffee ☕ 
+A coffee worth donation would be great ☕ 
 Btc address
 bc1q44xnlwyeajzsj28ln2ju5u8c7ugvnqzmf8awsw
