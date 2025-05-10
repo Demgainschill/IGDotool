@@ -81,7 +81,7 @@ ${c}                                      ${reset}
 	${y}-x${reset} [${b}int${reset}] : ${c}Extracting posts from iglinks file using xargs and yt-dlp${reset} ([${b}int${reset}] ${c}being higher parallel tasks faster downloads max 64 parallel tasks/threads downloading ${reset} (${b} Can be determined using the ${g}nproc${reset}${b} command ${reset})${reset})
 	${y}-h${reset} 	 :${c} Displaying usage section of igdotool${reset}
 
-A quick example supposing your alt+tab window is an active browser page of all ig saved posts with 67% zoom
+A quick example supposing your alt+tab window is an active browser page of all ig saved posts with ${y}67%${reset} zoom
 
 	${r}Run${reset} ./${g}igdotool${reset} ${y}-n${reset} ${b}5${reset} ( ${y}will automate copying of the 5 posts in a row to a file in the CWD ${reset})
 ${b}then${reset}, 	${r}Run${reset} ./${g}igdotool${reset} ${y}-x${reset} ${b}8${reset} ( ${y}will then start downloading all links found from the file containing links with parallel tasks allowing for faster parallel downloads and the actual use of multithreaded systems downloaded within the same CWD ${reset})
@@ -124,10 +124,10 @@ extractor(){
 	
        	if [[ -f $filename ]] && [[ -n $filename ]]; then 
 		echo "${g}$filename exists and contains links${reset}"
-		echo "${y}extracting and downloading links parallely.${reset}(${y} Holy grail of multithreaded systems..${reset}"
+		echo "${y}extracting and downloading links parallely.${reset}(${y} Holy grail of multithreaded systems..${reset})"
 		cat $filename | xargs -n 1 -I {} -P $tasks yt-dlp {}
 		if [[ $? -eq 0 ]]; then
-			echo "${g}all ig posts have been extracted${reset}"
+			echo "${g}all ig posts have been extracted and downloaded${reset}"
 		else
 			echo "${r}Errors encountered while extracting...${reset}"
 			echo "${r}Exiting...${reset}" 
